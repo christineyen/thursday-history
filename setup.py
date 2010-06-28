@@ -9,7 +9,7 @@ setup(
     name='thursdays',
     version='0.1',
     description='',
-    author='',
+    author='christine',
     author_email='',
     url='',
     install_requires=[
