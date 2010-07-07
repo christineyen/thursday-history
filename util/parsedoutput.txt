@@ -1,0 +1,114 @@
+########################
+Thu, 30 Jul 2009 00:00:00 -0700
+http://www.yelp.com/biz/beauty-bar-san-francisco
+########################
+Thu, 6 Aug 2009 00:00:00 -0700
+http://www.yelp.com/biz/el-rio-san-francisco
+########################
+Thu, 27 Aug 2009 11:24:17 -0700
+http://www.yelp.com/biz/rogue-ales-public-house-san-francisco
+########################
+Thu, 24 September 2009 00:00:00 -0700
+http://www.yelp.com/biz/bacar-san-francisco
+########################
+Thu, 8 Oct 2009 17:35:04 -0700
+http://www.yelp.com/biz/hobsons-choice-san-francisco
+########################
+Thu, 15 Oct 2009 10:35:07 -0700
+http://www.yelp.com/biz/bar-821-san-francisco
+########################
+Thu, 22 Oct 2009 17:22:17 -0700
+http://www.yelp.com/biz/toronado-san-francisco
+########################
+Thu, 29 Oct 2009 19:11:32 -0700
+http://www.yelp.com/biz/elbo-room-san-francisco
+########################
+Thu, 5 Nov 2009 16:33:10 -0800
+http://www.yelp.com/biz/la-trappe-san-francisco-2
+########################
+Thu, 12 Nov 2009 10:15:33 -0800
+http://www.yelp.com/biz/83-proof-san-francisco
+########################
+Thu, 19 Nov 2009 14:01:44 -0800
+http://www.yelp.com/biz/pi-bar-san-francisco
+########################
+Thu, 3 Dec 2009 11:34:55 -0800
+http://www.yelp.com/biz/mad-dog-in-the-fog-san-francisco
+########################
+Thu, 10 Dec 2009 17:23:34 -0800
+http://www.yelp.com/biz/smugglers-cove-san-francisco
+########################
+Thu, 7 Jan 2010 16:57:34 -0800
+http://www.yelp.com/biz/the-phoenix-bar-and-irish-gathering-house-san-francisco
+########################
+Thu, 14 Jan 2010 18:49:48 -0800
+http://www.yelp.com/biz/500-club-san-francisco
+########################
+Thu, 21 Jan 2010 17:03:59 -0800
+http://www.yelp.com/biz/the-buccaneer-san-francisco
+########################
+Thu, 28 Jan 2010 01:52:23 -0800
+http://www.yelp.com/biz/tunnel-top-san-francisco
+########################
+Thu, 4 Feb 2010 00:35:06 -0800
+http://www.yelp.com/biz/the-holy-cow-san-francisco
+########################
+Thu, 11 Feb 2010 12:04:09 -0800
+http://www.yelp.com/biz/thieves-tavern-san-francisco
+########################
+Thu, 18 Feb 2010 13:17:03 -0800
+http://www.yelp.com/biz/owl-tree-san-francisco-2
+########################
+Thu, 4 Mar 2010 19:52:30 -0800
+http://www.yelp.com/biz/amelie-san-francisco
+########################
+Thu, 11 Mar 2010 13:27:48 -0800
+http://www.yelp.com/biz/laszlo-san-francisco
+########################
+Thu, 18 Mar 2010 09:32:34 -0700
+http://www.yelp.com/biz/club-deluxe-san-francisco
+########################
+Thu, 25 Mar 2010 12:55:31 -0700
+http://www.yelp.com/biz/tunnel-top-san-francisco
+########################
+Thu, 1 Apr 2010 00:55:06 -0700
+http://www.yelp.com/biz/john-colins-san-francisco
+########################
+Thu, 8 Apr 2010 03:17:35 -0700
+http://www.yelp.com/biz/lion-pub-san-francisco
+########################
+Thu, 15 Apr 2010 19:24:25 -0700
+http://www.yelp.com/biz/hobsons-choice-san-francisco
+########################
+Thu, 22 Apr 2010
+http://www.yelp.com/biz/make-out-room-san-francisco
+########################
+Thu, 29 Apr 2010
+http://www.yelp.com/biz/500-club-san-francisco
+########################
+Thu, 6 May 2010 20:59:41 -0700
+http://www.yelp.com/biz/martunis-san-francisco
+########################
+Thu, 13 May 2010 10:57:43 -0700
+http://www.yelp.com/biz/edinburgh-castle-pub-san-francisco-2
+########################
+Thu, 20 May 2010 00:29:06 -0700
+http://yelp.com/biz/project-one-san-francisco
+########################
+Thu, 27 May 2010 21:40:32 -0700
+http://www.yelp.com/biz/blackbird-san-francisco
+########################
+Thu, 3 Jun 2010 12:43:47 -0700
+http://www.yelp.com/biz/fly-bar-san-francisco
+########################
+Thu, 10 Jun 2010 00:01:40 -0700
+http://www.yelp.com/biz/butter-san-francisco
+########################
+Thu, 17 Jun 2010 00:13:16 -0700
+http://www.yelp.com/biz/dalva-san-francisco
+########################
+Thu, 24 Jun 2010 00:48:20 -0700
+http://www.yelp.com/biz/dell-uva-san-francisco
+########################
+Thu, 1 Jul 2010 10:08:57 -0700
+http://www.yelp.com/biz/21st-amendment-brewery-san-francisco

@@ -37,15 +37,28 @@
   }
 
   function codeAddress(venue) {
-    if (geocoder) {
-      geocoder.geocode( { 'address': venue.address + ', San Francisco, CA'}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          venue.location = results[0].geometry.location;
-          markers.push(getMarker(venue));
-        } else {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
+    if (venue.location) {
+      markers.push(getMarker(venue));
+    } else if (venue.latitude && venue.longitude) {
+      venue.location = new google.maps.LatLng(venue.latitude, venue.longitude);
+      markers.push(getMarker(venue));
+    } else if (geocoder) {
+      geocoder.geocode( { 'address': venue.address + ', San Francisco, CA'},
+        function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            venue.location = results[0].geometry.location;
+
+            // save the lat/long for later
+            $.post('/thursday/set_location',
+              { id: venue.id,
+                latitude: venue.location.lat(),
+                longitude: venue.location.lng() });
+
+            markers.push(getMarker(venue));
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
     }
   }
 
@@ -75,11 +88,7 @@ $(document).ready(function() {
           markers = [];
 
           for (var i = ui.values[0]; i <= ui.values[1]; i++) {
-            if (tempPast[i].location) {
-              markers.push(getMarker(tempPast[i]));
-            } else {
-              codeAddress(tempPast[i]);
-            }
+            codeAddress(tempPast[i]);
           }
         },
         slide: function(e,ui){
@@ -127,9 +136,13 @@ $(document).ready(function() {
 </html>
 
 <%def name="venuetojs(venue)" filter="n">
-    { name: '${venue.name.replace("'", "\\\'")}',
+    { id: ${venue.id},
+      name: '${venue.name.replace("'", "\\\'")}',
       address: '${venue.address}',
-      date: new Date('${venue.date.strftime('%B %d, %Y')}') },
+      date: new Date('${venue.date.strftime('%B %d, %Y')}'),
+      latitude: '${venue.latitude}',
+      longitude: '${venue.longitude}',
+     },
 </%def>
 
 <%def name="venuetodiv(venue)">
