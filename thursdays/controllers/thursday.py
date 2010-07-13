@@ -14,13 +14,8 @@ class ThursdayController(BaseController):
 
     def index(self):
         # Return a rendered template
-        c.venues = meta.Session.query(Venue).order_by(Venue.date).limit(45).all()
-        for venue in c.venues:
-            print venue.name
-            print venue.latitude
+        c.venues = meta.Session.query(Venue).order_by(Venue.date).all()
         return render('/thursday.mako')
-        # or, return a response
-        # return 'Hello World'
 
     def process_form(self):
         if request:

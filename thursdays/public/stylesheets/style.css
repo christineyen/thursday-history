@@ -1,0 +1,50 @@
+body {
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 9pt;
+}
+#container {
+  width: 600px;
+  margin-right: 15px;
+  float: left;
+}
+#venuelist {
+  width: 300px;
+  height: 400px;
+  overflow: auto;
+}
+#map_canvas {
+  width: 600px;
+  height: 400px;
+}
+#slider {
+  width: 600px;
+}
+.venue {
+  padding: 2px 5px;
+}
+#venuelist div.venue:hover {
+  background-color: #ECF4FF;
+}
+#venuelist div.venue:hover .venue-delete {
+  border-color: #DBEBFF;
+  cursor: pointer;
+}
+.venue .venue-delete {
+  border: 1px solid #fff;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #fff;
+  float: right;
+}
+
+#venueform {
+  clear: both;
+  margin: 20px 10px;
+  font-size: 1.5em;
+}
+#venueform .placeholder {
+  color: #CFCFCF;
+}
+#venueform input {
+  font-size: 0.9em;
+}
