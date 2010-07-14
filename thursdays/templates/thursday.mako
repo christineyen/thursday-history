@@ -19,12 +19,12 @@
   var listIndexToVenueId = {};
 
   var venueData = [
-    % for v in c.venues:
+    % for v in reversed(c.venues):
       ${venuetojs(v)}
     % endfor
   ];
 
-  function initialize() {
+  var initialize = function() {
     console.log("initializing");
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(37.78, -122.445);
@@ -39,18 +39,20 @@
 
     for (var i = 0; i < venueData.length; i++) {
       listIndexToVenueId[i] = venueData[i].id;
-      codeAddress(venueData[i]);
+      var hide = (i < venueData.length - ${c.limit});
+      codeAddress(venueData[i], hide);
     }
 
     infoWindow = new google.maps.InfoWindow();
-  }
+  };
 
-  function codeAddress(venue) {
+  var codeAddress = function(venue, hide) {
+    var marker;
     if (venue.location) {
-      markers[venue.id] = getMarker(venue);
+      marker = getMarker(venue);
     } else if (venue.latitude && venue.longitude) {
       venue.location = new google.maps.LatLng(venue.latitude, venue.longitude);
-      markers[venue.id] = getMarker(venue);
+      marker = getMarker(venue);
     } else if (geocoder) {
       geocoder.geocode( { 'address': venue.address + ', San Francisco, CA'},
         function(results, status) {
@@ -63,30 +65,49 @@
                 latitude: venue.location.lat(),
                 longitude: venue.location.lng() });
 
-            markers[venue.id] = getMarker(venue);
+            marker = getMarker(venue);
           } else {
             alert("Geocode was not successful for the following reason: " + status);
           }
         });
     }
-  }
+    if (hide) {
+      hideVenue(venue.id, marker);
+    }
+    markers[venue.id] = marker;
+  };
 
-  function getMarker(venue) {
+  var getMarker = function(venue) {
     return new google.maps.Marker({
       map: map,
       position: venue.location,
       title: venue.name + ', at ' + venue.address,
     });
+  };
+
+  var hideVenue = function(venueId, mark) {
+    if (!mark) {
+      mark = markers[venueId];
+    }
+    mark.setVisible(false);
+    $('#venue-' + venueId).css('display', 'none');
+  }
+  var showVenue = function(venueId) {
+    var mark = markers[venueId];
+    mark.setVisible(true);
+    $('#venue-' + venueId).css('display', 'block');
   }
 
 </script>
 <script>
 $(document).ready(function() {
+
+  // set up slider
   var maxValue = venueData.length - 1;
   $('#slider').slider({
       min: 0,
       max: maxValue,
-      values: [0, maxValue],
+      values: [maxValue - ${c.limit}, maxValue],
       start: function(e,ui){
       },
       stop: function(e,ui){
@@ -96,11 +117,9 @@ $(document).ready(function() {
           var venueId = listIndexToVenueId[i];
           var mark = markers[venueId];
           if (mark.getVisible() && (i < min || i > max)) {
-            mark.setVisible(false);
-            $('#venue-' + venueId).css('display', 'none');
+            hideVenue(venueId);
           } else if (!mark.getVisible() && (i > min && i < max)) {
-            mark.setVisible(true);
-            $('#venue-' + venueId).css('display', 'block');
+            showVenue(venueId);
           }
         }
       },
@@ -109,7 +128,9 @@ $(document).ready(function() {
   });
   $(".venue-delete").click(function() {
     var venueId = $(this).parent().attr('venue-id');
-    alert("we want to delete : " + markers[venueId].getTitle());
+
+    $.post('/thursday/delete_venue', { id: venueId });
+    hideVenue(venueId);
     return false; // takes precedence over .venue clicks
   });
   $('.venue').click(function() {
@@ -140,7 +161,7 @@ $(document).ready(function() {
   </div>
 
   <div id="venuelist">
-    % for v in reversed(c.venues):
+    % for v in c.venues:
       ${venuetodiv(v)}
     % endfor
   </div>
@@ -150,7 +171,7 @@ $(document).ready(function() {
 <%def name="venuetojs(venue)" filter="n">
     { id: ${venue.id},
       name: '${venue.name.replace("'", "\\\'")}',
-      address: '${venue.address}',
+      address: '${venue.address.replace("'", "\\\'")}',
       date: new Date('${venue.date.strftime('%B %d, %Y')}'),
       latitude: '${venue.latitude}',
       longitude: '${venue.longitude}',

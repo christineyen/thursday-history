@@ -3,6 +3,8 @@ import logging
 from pylons import request, response, session, tmpl_context as c
 from pylons.controllers.util import abort, redirect_to
 
+from sqlalchemy.sql.expression import desc
+
 from thursdays.lib.base import BaseController, render
 from thursdays.model import Venue, meta
 
@@ -13,8 +15,12 @@ log = logging.getLogger(__name__)
 class ThursdayController(BaseController):
 
     def index(self):
-        # Return a rendered template
-        c.venues = meta.Session.query(Venue).order_by(Venue.date).all()
+        c.venues = meta.Session.query(Venue).order_by(desc(Venue.date)).all()
+        if request.params.has_key('limit'):
+            c.limit = request.params['limit']
+        else:
+            c.limit = len(c.venues) - 1
+
         return render('/thursday.mako')
 
     def process_form(self):
@@ -39,3 +45,10 @@ class ThursdayController(BaseController):
                 venue.latitude = request.params['latitude']
                 venue.longitude = request.params['longitude']
                 meta.Session.commit()
+
+    def delete_venue(self):
+        if request and request.params['id']:
+            venue = meta.Session.query(Venue).filter(Venue.id == request.params['id']).one()
+            meta.Session.delete(venue)
+            meta.Session.commit()
+
