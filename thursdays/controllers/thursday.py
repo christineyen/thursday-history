@@ -19,7 +19,7 @@ class ThursdayController(BaseController):
         if request.params.has_key('limit'):
             c.limit = request.params['limit']
         else:
-            c.limit = len(c.venues) - 1
+            c.limit = len(c.venues)
 
         return render('/thursday.mako')
 

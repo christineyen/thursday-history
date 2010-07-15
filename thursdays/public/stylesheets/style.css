@@ -4,13 +4,9 @@ body {
 }
 #container {
   width: 600px;
+  height: 420px;
   margin-right: 15px;
   float: left;
-}
-#venuelist {
-  width: 300px;
-  height: 400px;
-  overflow: auto;
 }
 #map_canvas {
   width: 600px;
@@ -22,11 +18,29 @@ body {
 .venue {
   padding: 2px 5px;
 }
+#venuelist {
+  position: absolute;
+  left: 630px;
+  width: 300px;
+}
+#venuelist-venues {
+  height: 375px;
+  overflow: auto;
+}
+#venuelist-showall {
+  padding: 10px;
+  font-size: 1.5em;
+  border: 1px dotted #99C7FF;
+}
 #venuelist div.venue:hover {
   background-color: #ECF4FF;
 }
 #venuelist div.venue:hover .venue-delete {
   border-color: #DBEBFF;
+  cursor: pointer;
+}
+#venuelist div#venuelist-showall:hover {
+  background-color: #D0E6FF;
   cursor: pointer;
 }
 .venue .venue-delete {

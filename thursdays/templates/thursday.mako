@@ -25,7 +25,6 @@
   ];
 
   var initialize = function() {
-    console.log("initializing");
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(37.78, -122.445);
     var myOptions = {
@@ -91,12 +90,27 @@
     }
     mark.setVisible(false);
     $('#venue-' + venueId).css('display', 'none');
-  }
+
+    // ugly, clean up later
+    if ($('#venuelist-showall').css('display') == 'none') {
+      $('#venuelist-venues').css('height', 375);
+      $('#venuelist-showall').css('display', 'block');
+    }
+  };
   var showVenue = function(venueId) {
     var mark = markers[venueId];
     mark.setVisible(true);
     $('#venue-' + venueId).css('display', 'block');
-  }
+  };
+  var showAllVenues = function() {
+    for (index in listIndexToVenueId) {
+      showVenue(listIndexToVenueId[index]);
+    }
+    $('#slider').slider('values', [0, venueData.length - 1]);
+    $('#venuelist-venues').css('height', 410);
+    $('#venuelist-showall').css('display', 'none');
+    return false;
+  };
 
 </script>
 <script>
@@ -138,6 +152,7 @@ $(document).ready(function() {
     infoWindow.setContent(markers[venueId].getTitle());
     infoWindow.open(map, markers[venueId]);
   });
+  $('#venuelist-showall').click(showAllVenues);
   $("input").each(function() {
     $(this).placeholder();
   });
@@ -161,9 +176,14 @@ $(document).ready(function() {
   </div>
 
   <div id="venuelist">
-    % for v in c.venues:
-      ${venuetodiv(v)}
-    % endfor
+    <div id="venuelist-venues">
+      % for v in c.venues:
+        ${venuetodiv(v)}
+      % endfor
+    </div>
+    <div id="venuelist-showall" style="display:none">
+      reveal all venues
+    </div>
   </div>
 </body>
 </html>
