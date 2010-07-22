@@ -4,12 +4,12 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+  <link href="stylesheets/style.css" rel="stylesheet" type="text/css"/>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
-<script src="/javascript/placeholder.js"></script>
+<script src="javascript/placeholder.js"></script>
 
 <script type="text/javascript">
   var geocoder;
