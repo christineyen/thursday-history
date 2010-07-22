@@ -64,7 +64,7 @@
                 latitude: venue.location.lat(),
                 longitude: venue.location.lng() });
 
-            marker = getMarker(venue);
+            markers[venue.id] = getMarker(venue);
           } else {
             alert("Geocode was not successful for the following reason: " + status);
           }
@@ -143,7 +143,7 @@ $(document).ready(function() {
   $(".venue-delete").click(function() {
     var venueId = $(this).parent().attr('venue-id');
 
-    $.post('/thursday/delete_venue', { id: venueId });
+    $.post('thursday/delete_venue', { id: venueId });
     hideVenue(venueId);
     return false; // takes precedence over .venue clicks
   });
@@ -161,7 +161,7 @@ $(document).ready(function() {
 </head>
 <body onload="initialize()">
   <div id="venueform">
-    <form name="test" method="GET" action="/thursday/process_form">
+    <form name="test" method="GET" action="thursday/process_form">
       enter new venue:
       <input type="text" name="name" placeholder="name of venue" />
       <input type="text" name="address" placeholder="location" />
