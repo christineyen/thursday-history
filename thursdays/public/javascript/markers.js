@@ -27,10 +27,11 @@ var initMap = function() {
  */
 var initSlider = function() {
   var maxValue = venueData.length - 1;
+  var minValue = maxValue - limit;
   $('#slider').slider({
       min: 0,
       max: maxValue,
-      values: [maxValue - limit, maxValue],
+      values: [minValue, maxValue],
       start: function(e,ui){
       },
       stop: function(e,ui){
@@ -45,10 +46,14 @@ var initSlider = function() {
             showVenue(venueId);
           }
         }
+        printDisplayedDates(min, max);
       },
       slide: function(e,ui){
       }
   });
+  if (minValue != 0) {
+    printDisplayedDates(minValue, maxValue);
+  }
 };
 
 /*
@@ -70,7 +75,7 @@ var codeAddress = function(venue, hide) {
           venue.location = results[0].geometry.location;
 
           // save the lat/long for later
-          $.post('/thursday/set_location',
+          $.post('/thursdays/set_location',
             { id: venue.id,
               latitude: venue.location.lat(),
               longitude: venue.location.lng() });
@@ -104,9 +109,21 @@ var hideVenue = function(venueId, mark) {
 
   // ugly, clean up later
   if ($('#venuelist-showall').css('display') == 'none') {
-    $('#venuelist-venues').css('height', 375);
+    $('#venuelist-venues').css('height', 355);
     $('#venuelist-showall').css('display', 'block');
   }
+};
+
+var printDisplayedDates = function(minIndex, maxIndex) {
+  $('#venuelist-dates').text('showing: ' +
+    formatDate(venueData[minIndex].date) +
+    ' through ' +
+    formatDate(venueData[maxIndex].date));
+};
+
+var formatDate = function(date) {
+  return (date.getMonth() + 1) + '/' + date.getDate() + '/' +
+    date.getFullYear().toString().substring(2);
 };
 
 var showVenue = function(venueId) {
@@ -148,7 +165,7 @@ $(document).ready(function() {
   $(".venue-delete").click(function() {
     var venueId = $(this).parent().attr('venue-id');
 
-    $.post('thursday/delete_venue', { id: venueId });
+    $.post('thursdays/delete_venue', { id: venueId });
     hideVenue(venueId);
     return false;
   });

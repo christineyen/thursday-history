@@ -32,6 +32,9 @@ body {
   font-size: 1.5em;
   border: 1px dotted #99C7FF;
 }
+#venuelist-dates {
+  font-size: 0.7em;
+}
 #venuelist div.venue:hover {
   background-color: #ECF4FF;
 }

@@ -44,6 +44,7 @@
       % endfor
     </div>
     <div id="venuelist-showall" style="display:none">
+      <div id="venuelist-dates"></div>
       reveal all venues
     </div>
   </div>
