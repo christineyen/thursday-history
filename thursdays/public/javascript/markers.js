@@ -37,7 +37,6 @@ var initSlider = function() {
       stop: function(e,ui){
         var min = Math.min(ui.values[0], ui.values[1]);
         var max = Math.max(ui.values[0], ui.values[1]);
-        window.console.log("min: " + min + ", max: " + max);
         for (var i = 0; i <= maxValue; i++) {
           var venueId = listIndexToVenueId[i];
           var mark = markers[venueId];
