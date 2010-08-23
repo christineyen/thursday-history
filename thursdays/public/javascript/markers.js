@@ -27,7 +27,7 @@ var initMap = function() {
  */
 var initSlider = function() {
   var maxValue = venueData.length - 1;
-  var minValue = maxValue - limit;
+  var minValue = venueData.length - limit;
   $('#slider').slider({
       min: 0,
       max: maxValue,
@@ -75,7 +75,7 @@ var codeAddress = function(venue, hide) {
           venue.location = results[0].geometry.location;
 
           // save the lat/long for later
-          $.post('/thursdays/set_location',
+          $.post('/thursdays/thursday/set_location',
             { id: venue.id,
               latitude: venue.location.lat(),
               longitude: venue.location.lng() });
@@ -93,11 +93,16 @@ var codeAddress = function(venue, hide) {
 };
 
 var getMarker = function(venue) {
-  return new google.maps.Marker({
+  var marker = new google.maps.Marker({
     map: map,
     position: venue.location,
     title: venue.name + ', at ' + venue.address,
   });
+  google.maps.event.addListener(marker, 'click', function() {
+    infoWindow.setContent(marker.getTitle());
+    infoWindow.open(map, marker);
+  });
+  return marker;
 };
 
 var hideVenue = function(venueId, mark) {
@@ -165,7 +170,7 @@ $(document).ready(function() {
   $(".venue-delete").click(function() {
     var venueId = $(this).parent().attr('venue-id');
 
-    $.post('thursdays/delete_venue', { id: venueId });
+    $.post('thursdays/thursday/delete_venue', { id: venueId });
     hideVenue(venueId);
     return false;
   });
