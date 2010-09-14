@@ -23,13 +23,19 @@
 </head>
 <body>
   <div id="venueform">
-    <form name="test" method="GET" action="thursday/process_form">
+    % if c.verified: # Janky / temp way of preventing unauthorized data modification
+      <form name="test" method="POST" action="thursday/process_form">
+    % endif
       enter new venue:
       <input type="text" name="name" placeholder="name of venue" />
       <input type="text" name="address" placeholder="location" />
       <input type="text" name="date" placeholder="date (m/d/y)" />
-      <input type="submit" name="submit" value="Submit" />
-    </form>
+    % if c.verified:
+        <input type="submit" name="submit" value="Submit" />
+      </form>
+    % else:
+        <input type="submit" name="submit" value="Submit" disabled="true" />
+    % endif
   </div>
 
   <div id="container">
@@ -63,7 +69,9 @@
 
 <%def name="venuetodiv(venue)">
   <div class="venue" id="venue-${venue.id}" venue-id="${venue.id}">
-    <span class="venue-delete">x</span>
+    % if c.verified:
+      <span class="venue-delete">x</span>
+    % endif
     <b>${venue.name}</b><br />
     ${venue.pretty_date()}<br />
     ${venue.address}<br />

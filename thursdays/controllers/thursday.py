@@ -21,9 +21,15 @@ class ThursdayController(BaseController):
         else:
             c.limit = len(c.venues)
 
+        # Super janky way of removing / hiding UI to mess with the DB - in lieu
+        # of a totally unnecessary user auth system.
+        if request.params.has_key('verify'):
+            c.verified = True
+
         return render('/thursday.mako')
 
     def process_form(self):
+        ''' Create a new Venue. Poorly named method, I know. '''
         if request:
             new_venue = Venue()
             new_venue.name = request.params['name']
@@ -39,6 +45,8 @@ class ThursdayController(BaseController):
             redirect_to(action = 'index')
 
     def set_location(self):
+        ''' A location was found for a particular Venue and the application's
+            requesting to set it.'''
         if request:
             venue = meta.Session.query(Venue).filter(Venue.id == request.params['id']).one()
             if venue and request.params['latitude'] and request.params['longitude']:
@@ -47,8 +55,14 @@ class ThursdayController(BaseController):
                 meta.Session.commit()
 
     def delete_venue(self):
+        ''' Delete a venue from the list.'''
         if request and request.params['id']:
             venue = meta.Session.query(Venue).filter(Venue.id == request.params['id']).one()
             meta.Session.delete(venue)
             meta.Session.commit()
+
+    def handle_email(self):
+        ''' Handler for incoming emails (in theory), via smtp2web'''
+        print str(dir(request))
+        print str(request.body)
 

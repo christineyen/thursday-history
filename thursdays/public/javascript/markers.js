@@ -1,3 +1,6 @@
+// TODO(christine) This setup is a little janky and some of these functions
+// could be reorganized - work in progress.
+
 var geocoder;
 var map;
 var infoWindow;
