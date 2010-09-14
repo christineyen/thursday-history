@@ -22,6 +22,12 @@
 </script>
 </head>
 <body>
+  <div id="header">
+    <p class="big">Started as a weekly bar night for a group of friends,</p>
+    <p class="medium">our Thursdays have traversed the city of San Francisco in pursuit of the next interesting place to sit down, hang out, and have a beer.</p>
+    <p>Poke around to see where we've been, play with the slider (below the map) to limit locations by time, and (if you were allowed to) add/delete new venues.</p>
+  </div>
+
   <div id="venueform">
     % if c.verified: # Janky / temp way of preventing unauthorized data modification
       <form name="test" method="POST" action="thursday/process_form">

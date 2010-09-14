@@ -1,26 +1,41 @@
 body {
   font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
   font-size: 9pt;
+  background-color: #CCCCCC
+}
+.big {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+.medium {
+  font-size: 1.3em;
+}
+p {
+  margin: 5px 0 5px 0;
+}
+#header {
+  font-size: 1.5em;
+  width: 820px;
 }
 #container {
-  width: 600px;
+  width: 500px;
   height: 420px;
   margin-right: 15px;
   float: left;
 }
 #map_canvas {
-  width: 600px;
+  width: 500px;
   height: 400px;
 }
 #slider {
-  width: 600px;
+  width: 500px;
 }
 .venue {
   padding: 2px 5px;
 }
 #venuelist {
   position: absolute;
-  left: 630px;
+  left: 530px;
   width: 300px;
 }
 #venuelist-venues {
@@ -30,20 +45,20 @@ body {
 #venuelist-showall {
   padding: 10px;
   font-size: 1.5em;
-  border: 1px dotted #99C7FF;
+  border: 1px dotted #6183A6;
 }
 #venuelist-dates {
   font-size: 0.7em;
 }
 #venuelist div.venue:hover {
-  background-color: #ECF4FF;
+  background-color: #6183A6;
 }
 #venuelist div.venue:hover .venue-delete {
   border-color: #DBEBFF;
   cursor: pointer;
 }
 #venuelist div#venuelist-showall:hover {
-  background-color: #D0E6FF;
+  background-color: #6183A6;
   cursor: pointer;
 }
 .venue .venue-delete {
